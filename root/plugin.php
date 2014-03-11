@@ -34,10 +34,11 @@ define( '{%= prefix_caps %}_BLOCK_VERSION', '0.1.0' );
 define( '{%= prefix_caps %}_BLOCK_URL',     plugin_dir_url( __FILE__ ) );
 define( '{%= prefix_caps %}_BLOCK_PATH',    dirname( __FILE__ ) . '/' );
 // Include the class loader if it's not defined already
-if (!class_exists('\jwage\SplClassLoader')) {
+if (!class_exists('jwage\SplClassLoader')) {
     require_once dirname(__FILE__) . '/includes/jwage/SplClassLoader.php';
 }
 // Add the plugin namespace to the autolaoding classes
-$classLoader = new \jwage\SplClassLoader('{%= prefix %}', dirname(__FILE__) . '/includes')->register();
+$classLoader = new \jwage\SplClassLoader('{%= prefix %}', dirname(__FILE__) . '/includes');
+$classLoader->register();
 // boostrap the block
 new \{%= prefix %}\Main();
