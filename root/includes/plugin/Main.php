@@ -13,10 +13,6 @@ class Main
     {
         if ( !class_exists('Headway') )
             return;
-
-        require_once dirname(__FILE__) . '/Block.php';
-        require_once dirname(__FILE__) . '/BlockOptions.php';
-
         return headway_register_block('\{%= prefix %}\Block', plugins_url(false, __FILE__));
     }
 
