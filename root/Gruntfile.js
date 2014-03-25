@@ -12,8 +12,7 @@ module.exports = function(grunt) {
                     ' * Licensed GPLv2+' +
                     ' */\n'
             },
-            { %= js_safe_name %
-            }: {
+            {%= js_safe_name %}: {
                 src: [
                     'assets/js/src/{%= js_safe_name %}.js'
                 ],
@@ -64,9 +63,7 @@ module.exports = function(grunt) {
         test: {
             files: ['assets/js/test/**/*.js']
         },
-        { %
-            if ('sass' === css_type) { %
-            }
+        {% if ('sass' === css_type) { %}
             sass: {
                 all: {
                     options: {
@@ -77,9 +74,7 @@ module.exports = function(grunt) {
                     }
                 }
             },
-            { %
-            } else if ('less' === css_type) { %
-            }
+            {% } else if ('less' === css_type) { %}
             less: {
                 all: {
                     files: {
@@ -87,9 +82,7 @@ module.exports = function(grunt) {
                     }
                 }
             },
-            { %
-            } %
-        }
+            {% } %}
         cssmin: {
             options: {
                 banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
@@ -100,19 +93,13 @@ module.exports = function(grunt) {
             },
             minify: {
                 expand: true,
-                { %
-                    if ('sass' === css_type || 'less' === css_type) { %
-                    }
+                {% if ('sass' === css_type || 'less' === css_type) { %}
                     cwd: 'assets/css/',
                     src: ['{%= js_safe_name %}.css'],
-                    { %
-                    } else { %
-                    }
+                    {% } else { %}
                     cwd: 'assets/css/src/',
                     src: ['{%= js_safe_name %}.css'],
-                    { %
-                    } %
-                }
+                    {% } %}
                 dest: 'assets/css/',
                 ext: '.min.css'
             }
@@ -127,9 +114,7 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            { %
-                if ('sass' === css_type) { %
-                }
+            {% if ('sass' === css_type) { %}
                 sass: {
                     files: ['assets/css/sass/*.scss'],
                     tasks: ['sass', 'cssmin'],
@@ -137,9 +122,7 @@ module.exports = function(grunt) {
                         debounceDelay: 500
                     }
                 },
-                { %
-                } else if ('less' === css_type) { %
-                }
+                {% } else if ('less' === css_type) { %}
                 less: {
                     files: ['assets/css/less/*.less'],
                     tasks: ['less', 'cssmin'],
@@ -147,9 +130,7 @@ module.exports = function(grunt) {
                         debounceDelay: 500
                     }
                 },
-                { %
-                } else { %
-                }
+                { %} else { %}
                 styles: {
                     files: ['assets/css/src/*.css'],
                     tasks: ['cssmin'],
@@ -157,9 +138,7 @@ module.exports = function(grunt) {
                         debounceDelay: 500
                     }
                 },
-                { %
-                } %
-            }
+                {% } %}
             scripts: {
                 files: ['assets/js/src/**/*.js', 'assets/js/vendor/**/*.js'],
                 tasks: ['jshint', 'concat', 'uglify'],
@@ -209,15 +188,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin'); { %
-        if ('sass' === css_type) { %
-        }
-        grunt.loadNpmTasks('grunt-contrib-sass'); { %
-        } else if ('less' === css_type) { %
-        }
-        grunt.loadNpmTasks('grunt-contrib-less'); { %
-        } %
-    }
+    grunt.loadNpmTasks('grunt-contrib-cssmin'); 
+    {% if ('sass' === css_type) { %}
+    grunt.loadNpmTasks('grunt-contrib-sass'); 
+    {% } else if ('less' === css_type) { %}
+    grunt.loadNpmTasks('grunt-contrib-less'); 
+    {% } %}
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -225,18 +201,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
 
     // Default task.
-    { %
-        if ('sass' === css_type) { %
-        }
-        grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'sass', 'cssmin', 'autoprefixer']); { %
-        } else if ('less' === css_type) { %
-        }
-        grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'autoprefixer']); { %
-        } else { %
-        }
-        grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin', 'autoprefixer']); { %
-        } %
-    }
+    {% if ('sass' === css_type) { %}
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'sass', 'cssmin', 'autoprefixer']); 
+    {% } else if ('less' === css_type) { %}
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'autoprefixer']); 
+    {% } else { %}
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin', 'autoprefixer']); 
+    {% } %}
 
     grunt.registerTask('build', ['default', 'clean', 'copy', 'compress']);
 
