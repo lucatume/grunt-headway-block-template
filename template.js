@@ -49,7 +49,7 @@ exports.template = function(grunt, init, done) {
             'grunt-contrib-cssmin': '~0.6.0',
             'grunt-contrib-jshint': '~0.1.1',
             'grunt-contrib-nodeunit': '~0.1.2',
-            'grunt-contrib-watch': '~0.2.0',
+            'grunt-contrib-watch': '~0.6.1',
             'grunt-contrib-clean': '~0.5.0',
             'grunt-contrib-copy': '~0.4.1',
             'grunt-contrib-compress': '~0.5.2',
