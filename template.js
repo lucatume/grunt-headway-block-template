@@ -52,7 +52,8 @@ exports.template = function(grunt, init, done) {
             'grunt-contrib-watch': '~0.2.0',
             'grunt-contrib-clean': '~0.5.0',
             'grunt-contrib-copy': '~0.4.1',
-            'grunt-contrib-compress': '~0.5.2'
+            'grunt-contrib-compress': '~0.5.2',
+            'grunt-autoprefixer': '0.7.x'
         };
 
         // Sanitize names where we need to for PHP/JS
