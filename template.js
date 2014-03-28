@@ -45,7 +45,7 @@ exports.template = function(grunt, init, done) {
         props.devDependencies = {
             'grunt': '~0.4.1',
             'grunt-contrib-concat': '~0.1.2',
-            'grunt-contrib-uglify': '~0.1.1',
+            'grunt-contrib-uglify': '~0.4.x',
             'grunt-contrib-cssmin': '~0.6.0',
             'grunt-contrib-jshint': '~0.1.1',
             'grunt-contrib-nodeunit': '~0.1.2',
@@ -53,6 +53,7 @@ exports.template = function(grunt, init, done) {
             'grunt-contrib-clean': '~0.5.0',
             'grunt-contrib-copy': '~0.4.1',
             'grunt-contrib-compress': '~0.5.2',
+            'grunt-contrib-sass': "~0.7.x",
             'grunt-autoprefixer': '0.7.x'
         };
 
