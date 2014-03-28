@@ -56,7 +56,8 @@ module.exports = function(grunt) {
                         ' */\n',
                     mangle: {
                         except: ['jQuery']
-                    }
+                    },
+                    sourceMap: true
                 }
             }
         },
