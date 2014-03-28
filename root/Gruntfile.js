@@ -69,6 +69,9 @@ module.exports = function(grunt) {
             }
             sass: {
                 all: {
+                    options: {
+                        sourcemap: true
+                    },
                     files: {
                         'assets/css/{%= js_safe_name %}.css': 'assets/css/sass/{%= js_safe_name %}.scss'
                     }
