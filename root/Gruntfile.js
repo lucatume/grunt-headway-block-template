@@ -105,10 +105,10 @@ module.exports = function(grunt) {
             }
         },
         autoprefixer: {
-            options: {
-
-            },
-            files: {
+            all: {
+                options: {
+                    browsers: ['last 2 versions']
+                },
                 src: 'assets/css/{%= js_safe_name %}.css',
                 dest: 'assets/css/{%= js_safe_name %}.css'
             }
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
             {% if ('sass' === css_type) { %}
                 sass: {
                     files: ['assets/css/sass/*.scss'],
-                    tasks: ['sass', 'cssmin'],
+                    tasks: ['sass','autoprefixer:all', 'cssmin'],
                     options: {
                         debounceDelay: 500
                     }
@@ -125,7 +125,7 @@ module.exports = function(grunt) {
                 {% } else if ('less' === css_type) { %}
                 less: {
                     files: ['assets/css/less/*.less'],
-                    tasks: ['less', 'cssmin'],
+                    tasks: ['sass','autoprefixer:all', 'cssmin'],
                     options: {
                         debounceDelay: 500
                     }
@@ -133,7 +133,7 @@ module.exports = function(grunt) {
                 { %} else { %}
                 styles: {
                     files: ['assets/css/src/*.css'],
-                    tasks: ['cssmin'],
+                    tasks: ['autoprefixer:all', 'cssmin'],
                     options: {
                         debounceDelay: 500
                     }
