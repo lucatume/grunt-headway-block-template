@@ -202,11 +202,11 @@ module.exports = function(grunt) {
 
     // Default task.
     {% if ('sass' === css_type) { %}
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'sass', 'cssmin', 'autoprefixer']); 
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'sass', 'autoprefixer', 'cssmin']); 
     {% } else if ('less' === css_type) { %}
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'autoprefixer']); 
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less', 'autoprefixer', 'cssmin']); 
     {% } else { %}
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin', 'autoprefixer']); 
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'autoprefixer', 'cssmin']); 
     {% } %}
 
     grunt.registerTask('build', ['default', 'clean', 'copy', 'compress']);
